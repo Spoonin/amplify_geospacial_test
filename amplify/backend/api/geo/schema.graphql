@@ -1,0 +1,59 @@
+type Location {
+  lat: Float!
+  lon: Float!
+}
+input LocationInput {
+  lat: Float!
+  lon: Float!
+}
+
+enum ActivityType {
+  walk
+  show
+  teaparty
+  police
+}
+
+enum ActivityStatus {
+  planned
+  active
+  finished
+  cancelled
+}
+
+type User @model{
+	id: ID!
+	nick: String
+	email: String!
+	avatarUrl: String
+}
+
+type Activity @model @searchable {
+  id: ID!
+  type: ActivityType!
+  title: String!
+  description: String
+  createdByID: ID!
+  createdBy: User! @connection(fields: ["createdByID"])
+  location: Location
+  status: ActivityStatus!
+  plannedStartAt: AWSDateTime
+  plannedEndAt: AWSDateTime
+  cancellationReason: String
+  finishedAt: AWSDateTime
+}
+
+type Query {
+  nearbyActivities(
+    location: LocationInput!
+    m: Int
+    limit: Int
+    nextToken: String
+  ): ModelActivityConnection
+}
+
+type ModelActivityConnection {
+  items: [Activity]
+  total: Int
+  nextToken: String
+}

@@ -1,0 +1,15 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-geo-test-dev-201849-authRole",
+            "UnauthRoleArn": "arn:aws:iam::398715319432:role/amplify-geo-test-dev-201849-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::398715319432:role/amplify-geo-test-dev-201849-authRole",
+            "Region": "eu-central-1",
+            "DeploymentBucketName": "amplify-geo-test-dev-201849-deployment",
+            "UnauthRoleName": "amplify-geo-test-dev-201849-unauthRole",
+            "StackName": "amplify-geo-test-dev-201849",
+            "StackId": "arn:aws:cloudformation:eu-central-1:398715319432:stack/amplify-geo-test-dev-201849/a9556380-148a-11eb-8d92-0200dd77d012",
+            "AmplifyAppId": "d1381mmbghqqio"
+        }
+    }
+}
