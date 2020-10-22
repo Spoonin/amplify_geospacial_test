@@ -35,22 +35,18 @@ const App = () => {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        
-      </header>
-      <div>
+      <p>
         <MyLocation
           location={myLocation}
           onChange={setMyLocation}
         />
-      </div>
-      <div>
+      </p>
+      <p>
         <button onClick={onSearch}>Search</button>
-      </div>
-      <div>
+      </p>
+      <p>
         <Activities activities={activities} />
-      </div>
+      </p>
     </div>
   );
 }
