@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { MyLocation } from "./components/MyLocation";
+import { Distance } from "./components/Distance";
 import { Location } from "./structs/Location";
 import { Activity } from './structs/Activity';
+import { Activities } from './components/Activities';
 
 import { nearbyActivities } from "./graphql/queries"
 
 import Amplify, { API, graphqlOperation } from "aws-amplify";
 import awsExports from "./aws-exports";
-import { Activities } from './components/Activities';
+
 Amplify.configure(awsExports);
 
 
@@ -20,11 +21,13 @@ const App = () => {
     lon: 27.543776
   });
 
+  const [distance, setDistance] = useState<number>(500);
+
   const [activities, setActivities] = useState<Activity[]>([]);
 
   const onSearch = async () => { 
     try {
-      const activitiesData: any = await API.graphql(graphqlOperation(nearbyActivities, { m: 500, limit: 100, location: myLocation }));
+      const activitiesData: any = await API.graphql(graphqlOperation(nearbyActivities, { m: distance, limit: 100, location: myLocation }));
       
       console.log(activitiesData.data)
       
@@ -39,6 +42,12 @@ const App = () => {
         <MyLocation
           location={myLocation}
           onChange={setMyLocation}
+        />
+      </p>
+      <p>
+        <Distance
+          distance={distance}
+          onChange={setDistance}
         />
       </p>
       <p>
